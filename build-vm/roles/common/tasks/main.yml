@@ -1,0 +1,50 @@
+---
+- name: "Make .ssh directory exists"
+  file:
+    state: directory
+    path: /root/.ssh
+    owner: root
+
+- name: "Include ssh-key to managed servers"
+  template:
+    src: authorized_keys.j2
+    dest: /root/.ssh/authorized_keys
+    owner: root
+    mode: 0644
+
+- name: "Update System"
+  package:
+    name: "*"
+    state: latest
+
+- name: "Install Essentials Packages"
+  package:
+    name: "{{ item }}"
+    state: installed
+  loop: "{{ packages.to_install }}"
+
+- name: "Systemd Enabled"
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: "{{ services.to_enable }}"
+
+- name: "Systemd Disabled"
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop: "{{ services.to_disable }}"
+
+- name: "Selinux Disable"
+  selinux:
+    state: disabled
+
+- name: "Configure NTP service"
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+    owner: root
+    mode: 0644
+  notify: "Restart NTP service"
