@@ -17,6 +17,8 @@ packages:
     - policycoreutils-python
     - open-vm-tools
     - ntp
+    - nmap
+    - tcpdump
   to_remove:
     -
 

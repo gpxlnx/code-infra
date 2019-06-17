@@ -3,7 +3,5 @@
 - name: "IBM - Build new VM"
   hosts:
     - all
-  become: yes
-  remote_user: root
   roles:
     - {role: common, tags: "common"}
