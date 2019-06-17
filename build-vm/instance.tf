@@ -22,8 +22,8 @@ resource "vsphere_virtual_machine" "new_vm" {
     datastore_id               = "${data.vsphere_datastore.datastore.id}"
     force_power_off            = true
     shutdown_wait_timeout      = 1
-    num_cpus                   = 2
-    memory                     = 1024
+    num_cpus                   = "${var.num_cpus}"
+    memory                     = "${var.num_mem}"
     wait_for_guest_net_timeout = 0
     guest_id                   = "centos7_64Guest"
     nested_hv_enabled          = true

@@ -1,0 +1,4 @@
+build-vm/terraform.tfstate
+build-vm/terraform.tfstate.backup
+build-vm/.terraform
+build-vm/build-vm.tfplan
