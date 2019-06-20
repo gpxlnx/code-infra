@@ -1,6 +1,6 @@
 ---
 
-- name: "IBM - Configure a new infraestructure HAProxy with Keepalived"
+- name: "Configure a new infraestructure HAProxy with Keepalived"
   hosts:
     - haproxy
 

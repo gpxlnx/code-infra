@@ -1,6 +1,6 @@
 ---
 
-- name: "IBM - Configure the SSH Key to secure access on server"
+- name: "Configure the SSH Key to secure access on server"
   hosts:
     - all
     

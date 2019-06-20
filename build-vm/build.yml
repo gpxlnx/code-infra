@@ -1,6 +1,6 @@
 ---
 
-- name: "IBM - Build a new virtual machine on-premise infraestructure"
+- name: "Build a new virtual machine on-premise infraestructure"
   hosts:
     - all
 
