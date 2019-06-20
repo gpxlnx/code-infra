@@ -1,0 +1,57 @@
+global
+  ulimit-n 100042
+  maxconn     4000
+  daemon
+
+  # turn on stats unix socket
+  stats socket /var/lib/haproxy/stats mode 0600 level admin
+
+### Defaults
+defaults
+  log global
+  option dontlognull
+  option http-server-close
+  option redispatch
+  retries 3
+  timeout http-request 10s
+  timeout queue 1m
+  timeout connect 10s
+  timeout client 1m
+  timeout server 1m
+  timeout http-keep-alive 10s
+  timeout check 10s
+  maxconn 3000
+
+### Stats
+listen  stats :9000
+        stats enable
+        stats realm Haproxy\ Statistics
+        stats uri /haproxy_stats
+        stats auth admin:password
+        stats refresh 30
+        mode http
+
+frontend app
+  log /dev/log local0 debug
+  bind *:80
+
+#
+# ACL
+{% for acl, app in new_app.items() %}
+acl {{ acl }} hdr(host) -i {{ acl }}.mydomain.intra.net
+{% endfor %}
+
+{% for acl, app in new_app.items() %}
+use_backend app-{{ app.name }} if {{ acl }}
+{% endfor %}
+
+{% for acl, app in new_app.items() %}
+backend app-{{ app.name }}
+  balance roundrobin
+  mode    http
+  option httpchk HEAD /
+{% for host_name, ip_addr in app.backend.items() %}
+    server {{ host_name }} {{ ip_addr }}:{{ app.port }} check
+{% endfor %}
+
+{% endfor %}

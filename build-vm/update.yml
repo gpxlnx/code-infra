@@ -1,8 +1,0 @@
----
-
-- name: "IBM - Build new VM"
-  hosts:
-    - all
-
-  roles:
-    - {role: common, tags: "common"}

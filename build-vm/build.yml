@@ -1,20 +1,8 @@
 ---
 
-- name: "IBM - Build new VM"
+- name: "IBM - Build a new virtual machine on-premise infraestructure"
   hosts:
     - all
-  
-  vars_prompt:
-  - name: host_name
-    prompt: "Enter a new hostname"
-    default: "vm-default"
-    confirm: yes
-    private: no
-  
-  tasks:
-  - name: "Update Host Hostname"
-    hostname:
-      name: "{{ host_name }}"
-  
+
   roles:
     - {role: common, tags: "common"}
