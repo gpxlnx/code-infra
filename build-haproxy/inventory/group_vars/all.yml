@@ -2,7 +2,7 @@
 
 ssh_key: 
   # SSH Information: ~${USER}/.ssh/id_rsa.pub
-  - "< SSH PUBLIC KEY>"
+  - ""
 
 packages:
   to_install:

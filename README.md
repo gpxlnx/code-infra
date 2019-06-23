@@ -98,10 +98,16 @@ Provisions a new virtual machine on vmware vsphere on premise infraestructure.
   # Virtual IP for high avalibility with keepalived.
   virtual_ipaddress: ""
 
-  # Hostname for first haproxy service, use the same hostname in inventory_hostname
+  # Hostname for first haproxy service, use the same hostname in inventory_hostname.
   # Ex:
   # haproxy_master: "haproxy-1"
   haproxy_master: ""
+
+  # Select one algorithm for load balance: first, leastconn, static-rr or roundrobin.
+  balance_algorithm: ""
+
+  # Domain used in infraestructure
+  my_domain: ""
 
   # If you need configure new app repeat block above new_app variable .
   # Ex:

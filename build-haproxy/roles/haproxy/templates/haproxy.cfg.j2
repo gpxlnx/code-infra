@@ -38,7 +38,7 @@ frontend app
 #
 # ACL
 {% for acl, app in new_app.items() %}
-acl {{ acl }} hdr(host) -i {{ acl }}.mydomain.intra.net
+acl {{ acl }} hdr(host) -i {{ acl }}.{{ my_domain }}
 {% endfor %}
 
 {% for acl, app in new_app.items() %}
@@ -47,7 +47,7 @@ use_backend app-{{ app.name }} if {{ acl }}
 
 {% for acl, app in new_app.items() %}
 backend app-{{ app.name }}
-  balance roundrobin
+  balance {{ balance_algorithm }}
   mode    http
   option httpchk HEAD /
 {% for host_name, ip_addr in app.backend.items() %}
