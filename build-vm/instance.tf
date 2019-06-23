@@ -1,21 +1,21 @@
 # Build New VM
-data "vsphere_datacenter" "dc" {
-    name = "ha-datacenter"
+data "vsphere_datacenter" "datacenter" {
+    name = "${var.data_center}"
 }
 
 data "vsphere_datastore" "datastore" {
-    name          = "vmdt-01"
-    datacenter_id = "${data.vsphere_datacenter.dc.id}"
+    name          = "${var.data_store}"
+    datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
 
 data "vsphere_resource_pool" "pool" {}
 
-data "vsphere_network" "mgmt_lan" {
-    name          = "VM Network"
-    datacenter_id = "${data.vsphere_datacenter.dc.id}"
+data "vsphere_network" "networking" {
+    name          = "${var.mgmt_lan}"
+    datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
 
-resource "vsphere_virtual_machine" "new_vm" {
+resource "vsphere_virtual_machine" "virtualmachine" {
     count                      = "${var.vm_count}"
     name                       = "${var.name_new_vm}-${count.index + 1}"
     resource_pool_id           = "${data.vsphere_resource_pool.pool.id}"
@@ -25,15 +25,15 @@ resource "vsphere_virtual_machine" "new_vm" {
     num_cpus                   = "${var.num_cpus}"
     memory                     = "${var.num_mem}"
     wait_for_guest_net_timeout = 0
-    guest_id                   = "centos7_64Guest"
+    guest_id                   = "${var.guest_id}"
     nested_hv_enabled          = true
     network_interface {
-        network_id   = "${data.vsphere_network.mgmt_lan.id}"
-        adapter_type = "vmxnet3"
+        network_id   = "${data.vsphere_network.networking.id}"
+        adapter_type = "${var.net_adapter_type}"
     }
     cdrom {
         datastore_id = "${data.vsphere_datastore.datastore.id}"
-        path         = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
+        path         = "${var.custom_iso_path}"
     }
     disk {
         size             = 25

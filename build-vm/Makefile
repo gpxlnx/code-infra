@@ -6,7 +6,7 @@ help:
 
 deploy-vm: ## Create a new virtual machine onpremise infraestructure
 	@terraform init
-	@terraform plan --out=deploy-deploy-vm.tfplan
+	@terraform plan --out=deploy-vm.tfplan
 	@terraform apply deploy-vm.tfplan
 
 destroy-vm: ## Destroy the onpremise infraestructure
