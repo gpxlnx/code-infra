@@ -2,8 +2,6 @@
 
 # **Terraform and Ansible to build VMware onpremise Infraestructure**
 
-## **Provide a virtual machine infrastructure VMware**
-
 ### **Modules**
 
 - **build-vm**  
