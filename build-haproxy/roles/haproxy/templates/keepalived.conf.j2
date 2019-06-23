@@ -18,7 +18,7 @@ vrrp_instance VI_1 {
   priority 100 # 101 on ha1, 100 on ha2
 {% endif -%}
   virtual_ipaddress {
-    172.16.245.9 # virtual ip address
+    {{ virtual_ipaddress }} # virtual ip address
   }
   track_script {
     chk_haproxy

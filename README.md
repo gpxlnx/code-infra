@@ -2,10 +2,10 @@
 
 # **Terraform and Ansible to build VMware onpremise Infraestructure**
 
-### **Modules**
+## **Modules**
 
-- **build-vm**  
-  Provisions a new virtual machine on vmware vsphere on premise infraestructure.
+- ## **build-vm**  
+Provisions a new virtual machine on vmware vsphere on premise infraestructure.
 
   The makefile helps automate to build and deploy the new infraestructure.
   
@@ -70,8 +70,79 @@
   }
   ```
 
-- **build-haproxy**  
-  Provisions a new servers haproxy on vmware vsphere on premise infraestructure.
+- ## **build-haproxy**  
+  Provisions a new servers haproxy mode http on vmware vsphere on premise infraestructure.
+  
+  **Requirements:**  
+  - deploy a new's virtual machines with **```build-vm```** module first.
+
+  The makefile helps automate to build and deploy the new infraestructure.
+  
+  **Makefile:**
+
+  ![make help](/docs/img/img2.png)
+
+  Edit for your environment.
+
+  **all.yml:**
+
+  ```yaml
+  ssh_key: 
+  # SSH Information: ~${USER}/.ssh/id_rsa.pub
+  - ""
+  ```
+
+  **haproxy.yml:**
+
+  ```yaml
+  # Virtual IP for high avalibility with keepalived.
+  virtual_ipaddress: ""
+
+  # Hostname for first haproxy service, use the same hostname in inventory_hostname
+  # Ex:
+  # haproxy_master: "haproxy-1"
+  haproxy_master: ""
+
+  # If you need configure new app repeat block above new_app variable .
+  # Ex:
+  # new_app:
+  #   app_1:
+  #     name: "api_1"
+  #     port: 30870
+  #     backend: {
+  #       "hostname_1": "10.0.0.1",
+  #       "hostname_2": "172.16.0.1",
+  #       "hostname_3": "192.168.0.1"
+  #     }
+  #   app_2:
+  #     name: "api_2"
+  #     port: 30871
+  #     backend: {
+  #       "hostname_1": "10.0.0.1", # Finish previous line with "," for more than one backend.
+  #       "hostname_2": "172.16.0.1",
+  #       "hostname_3": "192.168.0.1"
+  #     }
+  new_app:
+    <APP NAME>:
+      name: "<APP NAME>"
+      port: <APP PORT>
+      backend: {
+        "<HOSTNAME BACKEND>": "<IP BACKEND>"
+      }
+
+  ```
+
+  **hosts.ini:**
+  
+  ```ini
+  [all]
+  # haproxy-1 ansible_host=172.16.245.10  ip=172.16.245.10
+  # haproxy-2 ansible_host=172.16.245.11  ip=172.16.245.11
+
+  [haproxy]
+  # haproxy-1
+  # haproxy-2
+  ```
 
 - **build-kubernetes-cluster**  
   Provisions a new servers kubernetes on vmware vsphere on premise infraestructure.

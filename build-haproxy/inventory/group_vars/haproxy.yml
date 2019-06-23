@@ -1,10 +1,11 @@
 ---
+# Virtual IP for high avalibility with keepalived.
+virtual_ipaddress: ""
 
 # Hostname for first haproxy service, use the same hostname in inventory_hostname
 # Ex:
 # haproxy_master: "haproxy-1"
-haproxy_master: "<HOSTNAME>"
-
+haproxy_master: ""
 
 # If you need configure new app repeat block above new_app variable .
 # Ex:
