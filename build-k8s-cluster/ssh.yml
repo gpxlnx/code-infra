@@ -1,0 +1,8 @@
+---
+
+- name: "Configure the SSH Key to secure access on server"
+  hosts:
+    - all
+    
+  roles:
+    - {role: ssh, tags: "ssh"}

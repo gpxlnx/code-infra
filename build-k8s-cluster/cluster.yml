@@ -1,0 +1,27 @@
+---
+
+- name: "Configure k8s master hosts"
+  hosts:
+    - master
+    
+  roles:
+    - {role: master, tags: "master"}
+
+- name: "Configure k8s worker hosts"
+  hosts:
+    - worker
+    
+  roles:
+    - {role: worker, tags: "worker"}
+
+- name: Deploy Kubernetes with Containerd - Configuration Cluster
+  hosts:
+    - master
+  tasks:
+    - name: Label node to Worker
+      shell: >
+        kubectl label node {{ item }} node-role.kubernetes.io/worker=
+      args:
+        executable: /bin/bash
+      register: label_node
+      with_inventory_hostnames: worker

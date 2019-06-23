@@ -2,3 +2,9 @@ build-vm/terraform.tfstate
 build-vm/terraform.tfstate.backup
 build-vm/.terraform
 build-vm/build-vm.tfplan
+build-k8s-cluster/terraform.tfstate
+build-k8s-cluster/terraform.tfstate.backup
+build-k8s-cluster/.terraform
+build-k8s-cluster/build-vm.tfplan
+build-k8s-cluster/*.tfplan
+build-k8s-cluster/*.tfstate
