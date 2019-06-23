@@ -15,21 +15,6 @@ Provisions a new virtual machine on vmware vsphere on premise infraestructure.
 
   Edit for your environment.
 
-  **all.yml:**
-
-  ```yaml
-  ssh_key: 
-  # SSH Information: ~${USER}/.ssh/id_rsa.pub
-  - ""
-  ```
-
-  **host.ini:**
-
-  ```ìni
-  [all]
-  # node1 ansible_host=1.2.3.4  ip=1.2.3.4
-  ```
-
   **provider.tf:**
   
   ```terraform
@@ -70,6 +55,21 @@ Provisions a new virtual machine on vmware vsphere on premise infraestructure.
   }
   ```
 
+  **all.yml:**
+
+  ```yaml
+  ssh_key: 
+  # SSH Information: ~${USER}/.ssh/id_rsa.pub
+  - ""
+  ```
+
+  **host.ini:**
+
+  ```ìni
+  [all]
+  # node1 ansible_host=1.2.3.4  ip=1.2.3.4
+  ```
+  
 - ## **build-haproxy**  
   Provisions a new servers haproxy mode http on vmware vsphere on premise infraestructure.
   
