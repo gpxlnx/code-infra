@@ -6,40 +6,16 @@
 
 ### **Modules**
 
-- **build-vm**<br/>
+- **build-vm**  
   Provisions a new virtual machine on vmware vsphere on premise infraestructure.
 
   The makefile helps automate to build and deploy the new infraestructure.
   
   **Makefile:**
 
-  ```makefile
-    .PHONY: help
-  .DEFAULT_GOAL := help
+  ![make help](/docs/img/img1.png)
 
-  help:
-    @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}'
-
-  deploy-vm: ## Create a new virtual machine onpremise infraestructure
-    @terraform init
-    @terraform plan --out=deploy-vm.tfplan
-    @terraform apply deploy-vm.tfplan
-
-  destroy-vm: ## Destroy the onpremise infraestructure
-    @terraform init
-    @terraform destroy --auto-approve --force
-
-  test-conn: ## Does test connection with virtual machines
-    @ansible -i inventory/hosts.ini all -u root -k -m ping
-
-  install-ssh: ## Create and installe a user for ssh connection
-    @ansible-playbook -i inventory/hosts.ini ssh.yml -u root -k -e ansible_ssh_user=root
-
-  build-vm: ## Build a new virtual machine onpremise infraestucture
-    @ansible-playbook -i inventory/hosts.ini build.yml -u ansible -b -e ansible_ssh_user=ansible
-  ```
-
-  Edit for your environment.<br/>
+  Edit for your environment.
 
   **all.yml:**
 
@@ -50,6 +26,7 @@
   ```
 
   **host.ini:**
+
   ```ìni
   [all]
   # node1 ansible_host=1.2.3.4  ip=1.2.3.4
@@ -95,10 +72,10 @@
   }
   ```
 
-- **build-haproxy**<br/>
+- **build-haproxy**  
   Provisions a new servers haproxy on vmware vsphere on premise infraestructure.
 
-- **build-kubernetes-cluster**<br/>
+- **build-kubernetes-cluster**  
   Provisions a new servers kubernetes on vmware vsphere on premise infraestructure.
 
   **OBS:** The propose this module is provisions a new cluster with single node master to development and study, do not consider use in production environment. To production environment use homologed solutions. <https://kubernetes.io/docs/setup/production-environment/tools/kubespray/>
