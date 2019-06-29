@@ -150,7 +150,103 @@ Provisions a new virtual machine on vmware vsphere on premise infraestructure.
   # haproxy-2
   ```
 
-- **build-kubernetes-cluster**  
+- ## **build-kubernetes-cluster**  
   Provisions a new servers kubernetes on vmware vsphere on premise infraestructure.
 
   **OBS:** The propose this module is provisions a new cluster with single node master to development and study, do not consider use in production environment. To production environment use homologed solutions. <https://kubernetes.io/docs/setup/production-environment/tools/kubespray/>
+
+  The makefile helps automate to build and deploy the new infraestructure.
+  
+  **Makefile:**
+
+  ![make help](/docs/img/img3.png)
+
+  Edit for your environment.
+  
+  **provider.tf:**
+  
+  ```terraform
+  provider "vsphere" {
+    vsphere_server       = "< HOSTNAME / IP >"
+    user                 = "< USER >"
+    password             = "< PASSWORD >"
+    allow_unverified_ssl = true
+  }
+  ```
+
+  **vars.tf**
+
+  ```terraform
+  #
+  # Variables with default values, alter according to the your environment.
+  #
+  variable "data_center" {
+    default = "ha-datacenter"
+  }
+
+  variable "data_store" {
+    default = "vmdt-01"
+  }
+
+  variable "mgmt_lan" {
+    default = "VM Network"
+  }
+
+  variable "net_adapter_type" {
+    default = "vmxnet3"
+  }
+
+
+  variable "guest_id" {
+    default = "centos7_64Guest"
+  }
+
+  variable "custom_iso_path" {
+    default = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
+  }
+
+  ```
+
+  **all.yml:**
+
+  ```yaml
+  ---
+  # Configure the IP for master node.
+  k8s_master_node_ip: ""
+  k8s_api_secure_port: 6443
+
+  ssh_key:
+  # SSH Information: ~${USER}/.ssh/id_rsa.pub
+  - ""
+  ```
+  
+  **master.yml:**
+
+  ```yaml
+  ---
+  # Confifure the network for POD's network. Ex: 192.168.0.0/16
+  pod_network_cidr: ""
+
+  # Weavenet Network Plugin
+  # If you look user weavenet plugin network let true option.
+  weavenet_network: true
+  default_kubernetes_cni_weavenet_manifestUrl: "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  ```
+
+  **host.ini:**
+
+  ```ini
+  [all]
+  # node1 ansible_host=1.2.3.4  ip=1.6.3.4
+  k8s-mst-1 ansible_host=192.168.0.1 ip=192.168.0.1
+  k8s-wrk-1 ansible_host=192.168.0.2 ip=192.168.0.2
+  k8s-wrk-2 ansible_host=192.168.0.3 ip=192.168.0.3
+
+
+  [master]
+  k8s-mst-1
+
+  [worker]
+  k8s-wrk-1
+  k8s-wrk-2
+  ```
