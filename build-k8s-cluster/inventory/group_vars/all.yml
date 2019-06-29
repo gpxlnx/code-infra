@@ -1,5 +1,5 @@
 ---
-
+# Configure the IP for master node.
 k8s_master_node_ip: ""
 k8s_api_secure_port: 6443
 
