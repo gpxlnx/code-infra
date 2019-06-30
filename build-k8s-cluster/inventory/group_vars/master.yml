@@ -1,6 +1,6 @@
 ---
-
-pod_network_cidr: "192.168.0.0/16"
+# Confifure the network for POD's network. Ex: 192.168.0.0/16
+pod_network_cidr: ""
 
 # Weavenet Network Plugin
 weavenet_network: true

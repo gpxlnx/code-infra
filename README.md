@@ -158,21 +158,35 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
   # haproxy-2
   ```
 
+<<<<<<< HEAD
 - ## **build-kubernetes-cluster**
 
+=======
+- ## **build-kubernetes-cluster**  
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
   Provisions a new servers kubernetes on vmware vsphere on premise infraestructure.
 
   **OBS:** The propose this module is provisions a new cluster with single node master to development and study, do not consider use in production environment. To production environment use homologed solutions. <https://kubernetes.io/docs/setup/production-environment/tools/kubespray/>
 
+<<<<<<< HEAD
   **Makefile:**  
   The makefile helps automate to build and deploy the new infraestructure.
+=======
+  The makefile helps automate to build and deploy the new infraestructure.
+  
+  **Makefile:**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
 
   ![make help](/docs/img/img3.png)
 
   Edit for your environment.
   
+<<<<<<< HEAD
   **provider.tf:**  
   Set information to access VMWware vSphere/vCenter API's to management the new infraestructure.
+=======
+  **provider.tf:**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
   
   ```terraform
   provider "vsphere" {
@@ -183,8 +197,12 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
   }
   ```
 
+<<<<<<< HEAD
   **vars.tf**  
   Set information of your onpremise vmware infraestrucutre.
+=======
+  **vars.tf**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
 
   ```terraform
   #
@@ -217,8 +235,12 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
 
   ```
 
+<<<<<<< HEAD
   **all.yml:**  
   YAML file to set information to all nodes on kubernetes cluster.
+=======
+  **all.yml:**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
 
   ```yaml
   ---
@@ -231,8 +253,12 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
   - ""
   ```
   
+<<<<<<< HEAD
   **master.yml:**  
   YAML file to set information about node master on kubernetes cluster.
+=======
+  **master.yml:**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
 
   ```yaml
   ---
@@ -245,8 +271,12 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
   default_kubernetes_cni_weavenet_manifestUrl: "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
   ```
 
+<<<<<<< HEAD
   **host.ini:**  
   Configure the hosts to deploy a new cluster kubernetes.
+=======
+  **host.ini:**
+>>>>>>> 139d9feaf0a7a1d74754c11155beae6ebf0a3ec6
 
   ```ini
   [all]

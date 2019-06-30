@@ -1,3 +1,31 @@
+#
+# Variables with default values, alter according to the your environment.
+#
+variable "data_center" {
+  default = "ha-datacenter"
+}
+
+variable "data_store" {
+  default = "vmdt-01"
+}
+
+variable "mgmt_lan" {
+  default = "VM Network"
+}
+
+variable "net_adapter_type" {
+  default = "vmxnet3"
+}
+
+
+variable "guest_id" {
+  default = "centos7_64Guest"
+}
+
+variable "custom_iso_path" {
+  default = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
+}
+
 variable "name_new_master" {
   description = "Input a name for new k8s master Ex. k8s-master"
 }
