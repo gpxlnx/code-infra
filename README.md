@@ -100,6 +100,7 @@ ssh_key:
 YAML file to set information to all nodes on haproxy high avalibility.
 
 ```yaml
+---
 # Virtual IP for high avalibility with keepalived.
 virtual_ipaddress: ""
 
@@ -111,15 +112,19 @@ haproxy_master: ""
 # Select one algorithm for load balance: first, leastconn, static-rr or roundrobin.
 balance_algorithm: ""
 
+# Select one mode for HAProxy: http or tcp
+haproxy_mode: ""
+
 # Domain used in infraestructure
 my_domain: ""
 
-# If you need configure new app repeat block above new_app variable .
+# If you need configure new app repeat block above new_app variable.
 # Ex:
 # new_app:
 #   app_1:
 #     name: "api_1"
-#     port: 30870
+#     port_front: 8070
+#     port_back: 30870
 #     backend: {
 #       "hostname_1": "10.0.0.1",
 #       "hostname_2": "172.16.0.1",
@@ -127,19 +132,21 @@ my_domain: ""
 #     }
 #   app_2:
 #     name: "api_2"
-#     port: 30871
+#     port_front: 8071
+#     port_back: 30871
 #     backend: {
 #       "hostname_1": "10.0.0.1", # Finish previous line with "," for more than one backend.
 #       "hostname_2": "172.16.0.1",
 #       "hostname_3": "192.168.0.1"
 #     }
 new_app:
-<APP NAME>:
-name: "<APP NAME>"
-port: <APP PORT>
-backend: {
-"<HOSTNAME BACKEND>": "<IP BACKEND>"
-}
+  <APP NAME>:
+    name: "<APP NAME>"
+    port_front: <APP PORT FRONTEND>
+    port_back: <APP PORT BACKEND>
+    backend: {
+      "<HOSTNAME BACKEND>": "<IP BACKEND>"
+    }
 
 ```
 
