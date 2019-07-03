@@ -1,5 +1,3 @@
-**Doc's in construction**
-
 # **Terraform and Ansible to build VMware onpremise Infraestructure**
 
 ## **Modules**
