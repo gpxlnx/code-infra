@@ -35,6 +35,7 @@ frontend app
   log /dev/log local0 debug
   bind *:80
 
+{% if haproxy_mode == "http" %}
 #
 # ACL
 {% for acl, app in new_app.items() %}
@@ -51,7 +52,27 @@ backend app-{{ app.name }}
   mode    http
   option httpchk HEAD /
 {% for host_name, ip_addr in app.backend.items() %}
-    server {{ host_name }} {{ ip_addr }}:{{ app.port }} check
+    server {{ host_name }} {{ ip_addr }}:{{ app.port_back }} check
 {% endfor %}
 
 {% endfor %}
+{% endif %}
+
+{% if haproxy_mode == "tcp" %}
+{% for acl, app in new_app.items() %}
+#
+### app-{{ app.name }}
+frontend app-{{ app.name }}
+  log /dev/log local0 debug
+  bind *:{{ app.port_front }}
+  default_backend app-{{ app.name }}
+
+backend app-{{ app.name }}
+  balance {{ balance_algorithm }}
+  mode    tcp
+{% for host_name, ip_addr in app.backend.items() %}
+    server {{ host_name }} {{ ip_addr }}:{{ app.port_back }} check
+{% endfor %}
+
+{% endfor %}
+{% endif %}
