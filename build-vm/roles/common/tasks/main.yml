@@ -15,6 +15,14 @@
     group: root
     mode: 0644
 
+- name: "Set PATH environment varible"
+  copy:
+    src: path.sh
+    dest: /etc/profile.d/path.sh
+    owner: root
+    group: root
+    mode: 0644
+
 - name: "Update System"
   package:
     name: "*"
