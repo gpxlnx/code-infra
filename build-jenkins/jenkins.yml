@@ -1,0 +1,8 @@
+---
+
+- name: "Configure a new infraestructure Jenkins"
+  hosts:
+    - jenkins
+
+  roles:
+    - {role: jenkins, tags: "jenkins"}
