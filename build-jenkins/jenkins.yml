@@ -1,8 +1,29 @@
 ---
 
-- name: "Configure a new infraestructure Jenkins"
+- name: "Configure a new infraestructure Jenkins - Master"
   hosts:
-    - jenkins
-
+    - master
+  gather_facts: False
+  pre_tasks:
+   - setup:
+      gather_subset:
+       - '!all'
+       - '!any'
+       - 'network'
+       - 'virtual'
   roles:
-    - {role: jenkins, tags: "jenkins"}
+    - {role: master, tags: "master"}
+
+- name: "Configure a new infraestructure Jenkins - Slave"
+  hosts:
+    - slave
+  gather_facts: False
+  pre_tasks:
+   - setup:
+      gather_subset:
+       - '!all'
+       - '!any'
+       - 'network'
+       - 'virtual'
+  roles:
+    - {role: slave, tags: "slave"}
