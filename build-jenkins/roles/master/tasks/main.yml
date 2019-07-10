@@ -38,9 +38,9 @@
   shell: |
     cat /var/lib/jenkins/secrets/initialAdminPassword
   register: admin_password
-  when: initialAdminPassword.stat.exists
+  when: initialAdminPassword.stat.exists == true
 
 - name: "View initialAdminPassword"
   debug:
     msg: "{{ admin_password.stdout }}"
-  when: initialAdminPassword.stat.exists
+  when: initialAdminPassword.stat.exists == true
