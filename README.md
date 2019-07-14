@@ -230,6 +230,9 @@ YAML file to set information to all nodes on kubernetes cluster.
 k8s_master_node_ip: ""
 k8s_api_secure_port: 6443
 
+# Select the container engine to use in cluster docker or containerd.
+container_engine: ""
+
 ssh_key:
 # SSH Information: ~${USER}/.ssh/id_rsa.pub
 - ""
