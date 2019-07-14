@@ -6,7 +6,7 @@ variable "data_center" {
 }
 
 variable "data_store" {
-  default = "vmdt-01"
+  default = "vmdt-1"
 }
 
 variable "mgmt_lan" {
@@ -23,7 +23,7 @@ variable "guest_id" {
 }
 
 variable "custom_iso_path" {
-  default = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
+  default = "iso_images/custom-centos7-v7.iso"
 }
 
 variable "name_new_master" {
