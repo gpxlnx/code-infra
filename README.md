@@ -270,3 +270,45 @@ k8s-mst-1
 k8s-wrk-1
 k8s-wrk-2
 ```
+
+### **```(writing)```**
+* ## **build-jenkins** 
+
+Provisions a new servers jenkins on vmware vsphere on premise infraestructure.
+
+**Requirements:**  
+
+* deploy a new's virtual machines with **```build-vm```** module first.
+
+**Makefile:**  
+The makefile helps automate to build and deploy the new infraestructure.
+
+![make help](/docs/img/img4.png)
+
+Edit for your environment.
+
+**all.yml:**  
+YAML file to set information to all nodes on kubernetes cluster.
+
+```yaml
+---
+
+ssh_key:
+# SSH Information: ~${USER}/.ssh/id_rsa.pub
+- ""
+```
+
+**hosts.ini:**  
+Configure the hosts to deploy a new HAProxy HA mode http.
+
+```ini
+[all]
+; jenkins-1 ansible_host=172.16.245.10  ip=172.16.245.10
+; jenkins-2 ansible_host=172.16.245.11  ip=172.16.245.11
+
+[master]
+; jenkins-1
+
+[slave]
+; jenkins-2
+```
