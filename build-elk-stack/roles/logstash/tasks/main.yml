@@ -1,0 +1,47 @@
+---
+- name: "Configure GPG KEY for Logstash Repository"
+  rpm_key:
+    key:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: "Logstash Repository"
+  yum_repository:
+    name: "Logstash"
+    description: "Logstash repository for 7.x packages"
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    enabled: yes
+    gpgcheck: yes
+
+- name: "Install Logstash"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - logstash
+
+- name: "Verify if systemd is configured"
+  stat:
+    path: /etc/systemd/system/logstash.service
+  register: logstash_service
+
+- name: "Initialize Systemd Configuration for Logstash"
+  shell: |
+    bash /usr/share/logstash/bin/system-install
+  register: system-install
+  when: logstash_service.stat.exists == false
+
+- name: "Start and enabled Elasticsearch Service"
+  systemd:
+    name: logstash
+    state: started
+    enabled: yes
+  when: logstash_service.stat.exists == false
+
+- name: "Configure JVM Memory to Logstash"
+  template:
+    src: jvm.options.j2
+    dest: /etc/logstash/jvm.options
+    owner: root
+    group: root
+    mode: 0644
+  notify: "Reload Logstash Service"

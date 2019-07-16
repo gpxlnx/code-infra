@@ -1,0 +1,11 @@
+---
+ssh_key: 
+  # SSH Information: ~${USER}/.ssh/id_rsa.pub
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzja77jF9uWRLjlmVr3ONr4Kha6IKl4RHt1zm0mSEwCq3pGyf+COPPDuGyJ2PN8a9TngOSKmJ09jhzl4N2ofWh64ZZAMYsCE1tjilz7VP4UWUR6qLJ6jAS71JskVVyyzzagC+/FEcSiC4T03W3anMWnqmFYBR0DCp7RiJZzaCRhO7CNIcYT2vgzEesEm+QrnUSsYjppAjexrRZdW3JHZ4lq7wCePJLlaoq0cmr1Cl419HAQjIqVt4Gcj2yyKgA4xaMkMclQKBuYj7+pGjl07Dp/+H/ODiZ1Z6oippS4aa/LoV6MKp5LY+Ip4dr5eMtAhojwFXc1x5ftp/RbGezuHeH florentino@ibm.com"
+
+packages:
+  to_install:
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+  to_remove:
+    -
