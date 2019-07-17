@@ -1,0 +1,8 @@
+---
+- name: "Build a new elasticsearch environment"
+  hosts:
+    - cluster
+  roles:
+    - {role: common, tags: "common"}
+    - {role: elasticsearch, tags: "elasticsearch"}
+    - {role: logstash, tags: "logstash"}

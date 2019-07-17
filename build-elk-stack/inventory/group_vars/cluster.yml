@@ -1,0 +1,42 @@
+---
+#
+# Elasticsearch
+#
+cluster_mode: true
+cluster_name: "es-cluster"
+
+node_master: true
+node_data: true
+node_attr_rack: "rack_1"
+
+action_auto_create_index: ".monitoring*,.watches,.triggered_watches,.watcher-history*,.ml*"
+
+network_host: 0.0.0.0
+http_port: 9200
+
+cluster_initial_master_nodes:
+  - "elasticsearch-1"
+  - "elasticsearch-2"
+  - "elasticsearch-3"
+
+discovery_seed_hosts: 
+  - "elasticsearch-1"
+  - "elasticsearch-2"
+  - "elasticsearch-3"
+
+elasticsearch_jvm:
+  jvm_xms: "512m"
+  jvm_xmx: "512m"
+
+#
+# Logstash
+#
+config_reload_automatic: "false"
+config_reload_interval: "3s"
+pipeline_workers: "1"
+http_host: "0.0.0.0"
+logstash_http_port: "9600"
+
+logstash_jvm:
+  jvm_xms: "512m"
+  jvm_xmx: "512m"

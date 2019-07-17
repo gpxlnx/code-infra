@@ -1,0 +1,7 @@
+---
+
+- name: "Packages for ELK Stack"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ packages.to_install }}"
