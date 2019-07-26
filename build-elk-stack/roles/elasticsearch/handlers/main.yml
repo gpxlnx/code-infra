@@ -2,7 +2,7 @@
 
 - name: "Reload elasticsearch configuration"
   file:
-    path: /var/lib/elasticsearch/nodes/
+    path: /var/lib/elasticsearch/nodes
     state: absent
   notify: "Restart elasticsearch configuration"
 

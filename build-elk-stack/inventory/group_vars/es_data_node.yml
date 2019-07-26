@@ -1,0 +1,27 @@
+---
+cluster_mode: "true"
+cluster_name: "es-cluster"
+
+data_node: "true"
+node_attr_rack: "rck1"
+
+path_repo: "/backup/elasticsearch/lab"
+
+action_auto_create_index: "true"
+
+network_host: 0.0.0.0
+http_port: 9200
+
+cluster_initial_master_nodes:
+  - "elasticsearch-1"
+  - "elasticsearch-2"
+  - "elasticsearch-3"
+
+discovery_seed_hosts: 
+  - "elasticsearch-1"
+  - "elasticsearch-2"
+  - "elasticsearch-3"
+
+elasticsearch_jvm:
+  jvm_xms: "1g"
+  jvm_xmx: "1g"

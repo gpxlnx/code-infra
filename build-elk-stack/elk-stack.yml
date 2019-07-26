@@ -1,8 +1,14 @@
 ---
 - name: "Build a new elasticsearch environment"
   hosts:
-    - cluster
+    - es_master_node
+    - es_data_node
   roles:
     - {role: common, tags: "common"}
     - {role: elasticsearch, tags: "elasticsearch"}
+
+- name: "Build a new logstash environment"
+  hosts:
+    - logstash
+  roles:
     - {role: logstash, tags: "logstash"}
