@@ -35,7 +35,6 @@
     name: logstash
     state: started
     enabled: yes
-  when: logstash_service.stat.exists == false
 
 - name: "Configure Logstash"
   template:

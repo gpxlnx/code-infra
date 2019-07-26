@@ -17,8 +17,11 @@
 #
 #cluster.name: my-application
 cluster.name: {{ cluster_name }}
-node.master: {{ node_master }}
-node.data: {{ node_data }}
+{% if "es_master_node" in group_names %}
+node.master: {{ master_node }}
+discovery.zen.minimum_master_nodes: {{ discovery_zen_minimum_master_nodes }}
+{% endif %}
+node.data: {{ data_node }}
 action.auto_create_index: {{ action_auto_create_index }}
 #
 # ------------------------------------ Node ------------------------------------
@@ -43,6 +46,7 @@ path.data: /var/lib/elasticsearch
 # Path to log files:
 #
 path.logs: /var/log/elasticsearch
+path.repo: {{ path_repo }}
 #
 # ----------------------------------- Memory -----------------------------------
 #
