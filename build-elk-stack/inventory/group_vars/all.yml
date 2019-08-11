@@ -1,11 +1,37 @@
 ---
+# SSH Information: ~${USER}/.ssh/id_rsa.pub
 ssh_key: 
-  # SSH Information: ~${USER}/.ssh/id_rsa.pub
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzja77jF9uWRLjlmVr3ONr4Kha6IKl4RHt1zm0mSEwCq3pGyf+COPPDuGyJ2PN8a9TngOSKmJ09jhzl4N2ofWh64ZZAMYsCE1tjilz7VP4UWUR6qLJ6jAS71JskVVyyzzagC+/FEcSiC4T03W3anMWnqmFYBR0DCp7RiJZzaCRhO7CNIcYT2vgzEesEm+QrnUSsYjppAjexrRZdW3JHZ4lq7wCePJLlaoq0cmr1Cl419HAQjIqVt4Gcj2yyKgA4xaMkMclQKBuYj7+pGjl07Dp/+H/ODiZ1Z6oippS4aa/LoV6MKp5LY+Ip4dr5eMtAhojwFXc1x5ftp/RbGezuHeH florentino@ibm.com"
+  - ""
+
+# If use the nodes how an cluster
+cluster_mode: "true"
+
+# Name of cluster 
+cluster_name: ""
+
+# Name for rack
+node_attr_rack: ""
+
+# add all node's repeating block above node_of_cluster variable.
+# Ex.
+# node_1:                     
+#   host_ip: "192.168.0.68"
+#   host_name: "elk-stack-1"
+# node_2:                     
+#   host_ip: "192.168.0.69"
+#   host_name: "elk-stack-2"
+
+# Node's into cluster configuration
+node_of_cluster:
+  # node_1:
+  #   host_ip: "192.168.0.73"
+  #   host_name: "elk-stack-master-1"
+  # node_2:
+  #   host_ip: "192.168.0.66"
+  #   host_name: "elk-stack-master-2"
+
 
 packages:
   to_install:
     - java-1.8.0-openjdk
     - java-1.8.0-openjdk-devel
-  to_remove:
-    -
