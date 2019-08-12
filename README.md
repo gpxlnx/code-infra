@@ -279,6 +279,7 @@ k8s-wrk-1
 k8s-wrk-2
 ```
 
+<<<<<<< HEAD
 - ## **build-elk-stack**
 
 Provisions a new elastic stack on vmware vsphere on premise infraestructure.
@@ -286,6 +287,16 @@ Provisions a new elastic stack on vmware vsphere on premise infraestructure.
 **Requirements:**  
 
 - deploy a new's virtual machines with **```build-vm```** module first or ssh access to an server or virtual machine.
+=======
+### **```(writing)```**
+* ## **build-jenkins** 
+
+Provisions a new servers jenkins on vmware vsphere on premise infraestructure.
+
+**Requirements:**  
+
+* deploy a new's virtual machines with **```build-vm```** module first.
+>>>>>>> master
 
 **Makefile:**  
 The makefile helps automate to build and deploy the new infraestructure.
@@ -294,6 +305,7 @@ The makefile helps automate to build and deploy the new infraestructure.
 
 Edit for your environment.
 
+<<<<<<< HEAD
 **inventory.ini**  
 Configure the hots to deploy a new elk stack cluster.
 
@@ -359,4 +371,30 @@ packages:
   to_install:
     - java-1.8.0-openjdk
     - java-1.8.0-openjdk-devel
+=======
+**all.yml:**  
+YAML file to set information to all nodes on kubernetes cluster.
+
+```yaml
+---
+
+ssh_key:
+# SSH Information: ~${USER}/.ssh/id_rsa.pub
+- ""
+```
+
+**hosts.ini:**  
+Configure the hosts to deploy a new HAProxy HA mode http.
+
+```ini
+[all]
+; jenkins-1 ansible_host=172.16.245.10  ip=172.16.245.10
+; jenkins-2 ansible_host=172.16.245.11  ip=172.16.245.11
+
+[master]
+; jenkins-1
+
+[slave]
+; jenkins-2
+>>>>>>> master
 ```
