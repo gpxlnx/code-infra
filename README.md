@@ -67,7 +67,7 @@ default = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
 YAML file to set information to all nodes.
 
 ```yaml
-ssh_key: 
+ssh_key:
 # SSH Information: ~${USER}/.ssh/id_rsa.pub
 - ""
 ```
@@ -86,7 +86,7 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
 
 **Requirements:**  
 
-* deploy a new's virtual machines with **```build-vm```** module first.
+- deploy a new's virtual machines with **```build-vm```** module first.
 
 **Makefile:**  
 The makefile helps automate to build and deploy the new infraestructure.
@@ -330,7 +330,7 @@ ssh_key:
 # If use the nodes how an cluster
 cluster_mode: "true"
 
-# Name of cluster 
+# Name of cluster
 cluster_name: ""
 
 # Name for rack
