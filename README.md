@@ -4,6 +4,7 @@ this is a set of code's to build tools of services to environment on VMware on p
 
 - **Virtual Machine**
 - **HAProxy**
+- **Jenkins**
 - **Kubernetes Cluster**
 - **ELK Stack**
 
