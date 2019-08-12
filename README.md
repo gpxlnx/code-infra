@@ -1,8 +1,16 @@
-# **Terraform and Ansible to build VMware onpremise Infraestructure**
+# **Terraform and Ansible to build VMware onpremise Infraestructure**  
+
+this is a set of code's to build tools of services to environment on VMware on premise Infraestructure. Here have:
+
+- **Virtual Machine**
+- **HAProxy**
+- **Jenkins**
+- **Kubernetes Cluster**
+- **ELK Stack**
 
 ## **Modules**
 
-* ## **build-vm**  
+- ## **build-vm**  
 
 Provisions a new virtual machine on vmware vsphere on premise infraestructure.
 
@@ -59,7 +67,7 @@ default = "iso_images/CentOS-7-x86_64-Minimal-1810.iso"
 YAML file to set information to all nodes.
 
 ```yaml
-ssh_key: 
+ssh_key:
 # SSH Information: ~${USER}/.ssh/id_rsa.pub
 - ""
 ```
@@ -78,7 +86,7 @@ Provisions a new servers haproxy mode http on vmware vsphere on premise infraest
 
 **Requirements:**  
 
-* deploy a new's virtual machines with **```build-vm```** module first.
+- deploy a new's virtual machines with **```build-vm```** module first.
 
 **Makefile:**  
 The makefile helps automate to build and deploy the new infraestructure.
@@ -163,7 +171,7 @@ Configure the hosts to deploy a new HAProxy HA mode http.
 # haproxy-2
 ```
 
-* ## **build-kubernetes-cluster**
+- ## **build-kubernetes-cluster**
 
 Provisions a new servers kubernetes on vmware vsphere on premise infraestructure.
 
@@ -271,6 +279,15 @@ k8s-wrk-1
 k8s-wrk-2
 ```
 
+<<<<<<< HEAD
+- ## **build-elk-stack**
+
+Provisions a new elastic stack on vmware vsphere on premise infraestructure.
+
+**Requirements:**  
+
+- deploy a new's virtual machines with **```build-vm```** module first or ssh access to an server or virtual machine.
+=======
 ### **```(writing)```**
 * ## **build-jenkins** 
 
@@ -279,6 +296,7 @@ Provisions a new servers jenkins on vmware vsphere on premise infraestructure.
 **Requirements:**  
 
 * deploy a new's virtual machines with **```build-vm```** module first.
+>>>>>>> master
 
 **Makefile:**  
 The makefile helps automate to build and deploy the new infraestructure.
@@ -287,6 +305,73 @@ The makefile helps automate to build and deploy the new infraestructure.
 
 Edit for your environment.
 
+<<<<<<< HEAD
+**inventory.ini**  
+Configure the hots to deploy a new elk stack cluster.
+
+```ìni
+[all]
+; elk-stack-master-1 ansible_host=192.168.0.73 ip=192.168.0.73
+; elk-stack-master-2 ansible_host=192.168.0.66 ip=192.168.0.66
+; elk-stack-data-1 ansible_host=192.168.0.63 ip=192.168.0.63
+; elk-stack-data-2 ansible_host=192.168.0.62 ip=192.168.0.62
+
+[es_master_node]
+; elk-stack-master-1
+; elk-stack-master-2
+
+[es_data_node]
+; elk-stack-data-1
+; elk-stack-data-2
+
+
+[logstash]
+; elk-stack-data-1
+; elk-stack-data-2
+```
+
+**all.yml**  
+YAML file to set information to all nodes on elk stack cluster.
+
+```yaml
+---
+# SSH Information: ~${USER}/.ssh/id_rsa.pub
+ssh_key:  
+  - ""
+
+# If use the nodes how an cluster
+cluster_mode: "true"
+
+# Name of cluster
+cluster_name: ""
+
+# Name for rack
+node_attr_rack: ""
+
+# add all node's repeating block above node_of_cluster variable.
+# Ex.
+# node_1:
+#   host_ip: "192.168.0.68"
+#   host_name: "elk-stack-1"
+# node_2:
+#   host_ip: "192.168.0.69"
+#   host_name: "elk-stack-2"
+
+# Node's into cluster configuration
+node_of_cluster:
+  # node_1:
+  #   host_ip: "192.168.0.73"
+  #   host_name: "elk-stack-master-1"
+  # node_2:
+  #   host_ip: "192.168.0.66"
+  #   host_name: "elk-stack-master-2"
+
+
+packages:
+  to_install:
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+=======
 **all.yml:**  
 YAML file to set information to all nodes on kubernetes cluster.
 
@@ -311,4 +396,5 @@ Configure the hosts to deploy a new HAProxy HA mode http.
 
 [slave]
 ; jenkins-2
+>>>>>>> master
 ```
