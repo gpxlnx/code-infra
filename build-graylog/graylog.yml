@@ -1,0 +1,8 @@
+---
+
+- name: "Configure a new infraestructure Graylog"
+  hosts:
+    - graylog
+
+  roles:
+    - {role: graylog, tags: "graylog"}

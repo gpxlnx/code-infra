@@ -1,0 +1,7 @@
+---
+
+- name: "Reload Configuration of Graylog"
+  systemd:
+    name: graylog-server
+    state: restarted
+    enabled: yes

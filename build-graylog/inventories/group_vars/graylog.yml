@@ -1,0 +1,7 @@
+---
+
+enter_password: "Xhb5VARuMj1pELBxHZVSYHdOCXbmaSegkTEm8HEnIeu08ACvVlqnrErIxvhUNH8HuRk0p9AyEiw4S87k8FYXXRnbHGkUHaCC"
+password_sha2: "6f360a55b8c77c30dcbd0e4bee5709bfba5b5bc10e7da654703afc97b11f9685"
+root_timezone: "America/Sao_Paulo"
+http_bind_address: 0.0.0.0
+http_bind_port: 9000

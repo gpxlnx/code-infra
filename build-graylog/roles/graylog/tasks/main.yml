@@ -1,0 +1,48 @@
+---
+
+- name: "Prerequisites Repositories"
+  yum_repository:
+    state: present
+    description: MongoDB Repository
+    name: mongodb
+    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+    gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
+    gpgcheck: yes
+    enabled: yes
+
+- name: "Prerequisites Packages"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - epel-release
+    - java-1.8.0-openjdk
+    - pwgen
+    - policycoreutils-python
+    - mongodb-org
+
+- name: "Install Grayloy"
+  yum:
+    name: "{{ item }}"
+    state: installed
+  loop:
+    - https://packages.graylog2.org/repo/packages/graylog-3.0-repository_latest.rpm
+    - graylog-server
+
+- name: "Configure Graylog"
+  template:
+    src: server.conf.j2
+    dest: /etc/graylog/server/server.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: "Reload Configuration of Graylog"
+  
+- name: "Start and Enable Services"
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - mongod
+    - graylog-server
