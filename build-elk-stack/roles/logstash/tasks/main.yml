@@ -1,17 +1,4 @@
 ---
-- name: "Configure GPG KEY for Logstash Repository"
-  rpm_key:
-    key:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
-    state: present
-
-- name: "Logstash Repository"
-  yum_repository:
-    name: "Logstash"
-    description: "Logstash repository for 7.x packages"
-    baseurl: https://artifacts.elastic.co/packages/7.x/yum
-    enabled: yes
-    gpgcheck: yes
-
 - name: "Install Logstash"
   yum:
     name: "{{ item }}"

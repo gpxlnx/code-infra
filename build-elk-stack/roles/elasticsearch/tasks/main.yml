@@ -1,18 +1,4 @@
 ---
-
-- name: "Configure GPG KEY for Elasticsearch Repository"
-  rpm_key:
-    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-    state: present
-
-- name: "Elasticsearch Repository"
-  yum_repository:
-    name: "Elasticsearch"
-    description: "Elasticsearch repository for 7.x packages"
-    baseurl: https://artifacts.elastic.co/packages/7.x/yum
-    enabled: yes
-    gpgcheck: yes
-
 - name: "Install Elasticsearch"
   yum:
     name: "{{ item }}"

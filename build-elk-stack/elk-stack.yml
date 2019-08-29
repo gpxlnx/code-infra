@@ -11,4 +11,12 @@
   hosts:
     - logstash
   roles:
+    - {role: common, tags: "common"}
     - {role: logstash, tags: "logstash"}
+
+- name: "Build a new kibana environment"
+  hosts:
+    - kibana
+  roles:
+    - {role: common, tags: "common"}
+    - {role: kibana, tags: "kibana"}

@@ -226,9 +226,14 @@ path.logs: /var/log/logstash
 # X-Pack Monitoring
 # https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html
 #xpack.monitoring.enabled: false
+xpack.monitoring.enabled: true
 #xpack.monitoring.elasticsearch.username: logstash_system
 #xpack.monitoring.elasticsearch.password: password
 #xpack.monitoring.elasticsearch.hosts: ["https://es1:9200", "https://es2:9200"]
+xpack.monitoring.elasticsearch.hosts:
+{% for item, node in node_of_cluster.items() %}
+  - "http://{{ node.host_name }}"
+{% endfor %}
 #xpack.monitoring.elasticsearch.ssl.certificate_authority: [ "/path/to/ca.crt" ]
 #xpack.monitoring.elasticsearch.ssl.truststore.path: path/to/file
 #xpack.monitoring.elasticsearch.ssl.truststore.password: password
