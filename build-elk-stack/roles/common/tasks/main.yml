@@ -1,4 +1,16 @@
 ---
+- name: "Configure GPG KEY for Elastic Repository"
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: "Elastic Repository"
+  yum_repository:
+    name: "Elastic"
+    description: "Elastic repository for 7.x packages"
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    enabled: yes
+    gpgcheck: yes
 
 - name: "Configure /etc/hosts"
   template:
