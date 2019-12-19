@@ -79,6 +79,9 @@ Configure the hosts to management with ansible.
 [all]
 # node1 ansible_host=1.2.3.4  ip=1.2.3.4
 ```
+### **Demo**
+[![Terraform on VMware ESXi](https://i9.ytimg.com/vi/rLtPcIcNPFg/mq3.jpg?sqp=CIP-7-8F&rs=AOn4CLBbsrwh0UvYvgCOZ4PZnDQ3lyDMRg)](https://youtu.be/rLtPcIcNPFg "Terraform on VMware ESXi")
+
 
 - ## **build-haproxy**  
 
